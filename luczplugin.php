@@ -35,7 +35,7 @@ function lucz_settings() {
       $capability = 'administrator',
       $menu_slug  = 'lucz-todo',
       $function = 'lucz_sideBanner',
-      $icon_url = "",
+      $icon_url = "dashicons-editor-ul",
       $position = 6
     );
 }
