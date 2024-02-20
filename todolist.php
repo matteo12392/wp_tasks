@@ -8,7 +8,7 @@ $sqlC = "SELECT * FROM $tasks WHERE status = 2";
 $resC = $wpdb->get_results($sqlC);
 ?>
 <div class="container mt-5">
-  <form method="post" class="modal-body mb-5">
+  <form method="post" class="mb-5">
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="accordion-item">
         <h2 class="accordion-header">
