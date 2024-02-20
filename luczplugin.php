@@ -26,10 +26,21 @@ function lucz_getScript() {
 	wp_enqueue_script( 'lucz_bs_script', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array(), '1.0.0', true );
 	wp_enqueue_script( 'lucz_jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js', array(), '1.0.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'lucz_getScript' );
+add_action( 'admin_head', 'lucz_getScript' );
 
+function lucz_settings() {
+  add_menu_page(	
+      $page_title = 'LuCz ToDo List',
+      $menu_title = 'LuCz ToDo List',
+      $capability = 'administrator',
+      $menu_slug  = 'lucz-todo',
+      $function = 'lucz_sideBanner',
+      $icon_url = "",
+      $position = 6
+    );
+}
 function lucz_sideBanner() {
     include("todolist.php");
 }
-add_action('wp_body_open', "lucz_sideBanner");
+add_action('admin_menu', 'lucz_settings');
 ?>
