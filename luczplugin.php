@@ -3,7 +3,7 @@
  * Plugin Name:       ToDo List - LuCz
  * Plugin URI:        https://lucz.altervista.org/
  * Description:       Handle the basics with this plugin.
- * Version:           1.2.0
+ * Version:           1.2.5
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Matteo Lucrezio
@@ -17,6 +17,17 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+
+function lucz_init() {
+  global $wpdb;
+  $tasksTable = "wp_tasks";
+  $sql = "CREATE TABLE IF NOT EXISTS `wp_tasks` (`id` int(11) NOT NULL AUTO_INCREMENT, `title` varchar(50) NOT NULL, `descr` varchar(200) DEFAULT NULL, `status` int(11) DEFAULT NULL, PRIMARY KEY (`id`))";
+  if($wpdb->get_var( "show tables like '$tasksTable'" ) != $tasksTable) {
+    require_once(ABSPATH . '/wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+  }
+}
+register_activation_hook( __FILE__, "lucz_init" );
 
 function lucz_getScript() {
 	wp_enqueue_style( 'lucz_style', plugins_url( 'assets/style.css', __FILE__ ));
