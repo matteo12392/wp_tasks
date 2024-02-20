@@ -1,26 +1,23 @@
 <?php
 global $wpdb;
-
+$tasks = "wp_tasks";
 if (isset($_POST['save_task'])) {
-  $title = mysqli_real_escape_string($conn, $_POST['title']);
-  $descr = mysqli_real_escape_string($conn, $_POST['descr']);
-  $status = mysqli_real_escape_string($conn, $_POST['status']);
-  $query = "INSERT INTO $listTable (title, descr, status) VALUES('$title', '$descr', '$status')";
-  mysqli_query($conn, $query);
+  $title = $_POST['title'];
+  $descr = $_POST['descr'];
+  $status = $_POST['status'];
+  $wpdb->insert($tasks, array("title" => $title, "descr" => $descr, "status" => $status));
 }
 
 if (isset($_POST['move'])) {
-  $move = mysqli_real_escape_string($conn, $_POST['move']);
-  $id = mysqli_real_escape_string($conn, $_POST['id']);
-  $status = mysqli_real_escape_string($conn, $_POST['status']);
+  $move = $_POST['move'];
+  $id = $_POST['id'];
+  $status = $_POST['status'];
   if($move == "l") $status--;
   else $status++;
-  $query = "UPDATE $listTable SET  status = '$status' WHERE id = '$id'";
-  mysqli_query($conn, $query);
+  $wpdb->update($tasks, array("status" => $status), array("id" => $id));
 }
 
 if (isset($_POST['del'])) {
-  $id = mysqli_real_escape_string($conn, $_POST['id']);
-  $query = "DELETE FROM $listTable WHERE id = '$id'";
-  mysqli_query($conn, $query);
+  $id = $_POST['id'];
+  $wpdb->delete($tasks, array("id" => $id));
 }
