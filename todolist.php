@@ -36,74 +36,61 @@ $resC = $wpdb->get_results($sqlC);
     </div>
   </form>
 </div>
-<div class="container">
-  <div class="row">
+<div class="container my-5">
+  <div class="row" id="cards-container">
     <div class="col">
-      <h1 class="text-center fs-4">To Do</h1>
-      <?php foreach ($resT as $row) { ?>
-        <div class="card mb-2">
-          <form method="post" class="card-body">
-            <h4 class="card-title"><?php echo $row->title ?></h4>
-            <p><?php echo $row->descr ?></p>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group me-2" role="group" aria-label="Second group">
-                <button type="submit" name="move" value="l" class="btn btn-secondary" disabled><i class="bi bi-caret-left-fill"></i></button>
-                <button type="submit" name="move" value="r" class="btn btn-secondary"><i class="bi bi-caret-right-fill"></i></button>
-              </div>
-              <div class="btn-group" role="group" aria-label="Third group">
-                <button type="submit" name="del" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-              </div>
-              <input type="hidden" name="status" value="<?php echo $row->status ?>">
-              <input type="hidden" name="id" value="<?php echo $row->id ?>">
+      <h3 class="mb-3">To Do</h3>
+      <ul id="0" class="cards">
+        <?php foreach ($resT as $row) { ?>
+          <li>
+            <div class="card mb-2" id="<?php echo $row->id ?>">
+              <form method="post" class="card-body">
+                <h4 class="card-title"><?php echo $row->title ?></h4>
+                <p><?php echo $row->descr ?></p>
+                <button type="submit" name="del" class="btn btn-danger" id="delete-task"><i class="bi bi-x-lg"></i></button>
+                <input type="hidden" name="status" value="<?php echo $row->status ?>">
+                <input type="hidden" name="id" value="<?php echo $row->id ?>">
+              </form>
             </div>
-          </form>
-        </div>
-      <?php } ?>
+          </li>
+        <?php } ?>
+      </ul>
     </div>
     <div class="col">
-      <h1 class="text-center fs-4">In Progress</h1>
-      <?php foreach ($resI as $row) { ?>
-        <form method="post" class="card mb-2">
-          <div class="card-body">
-            <h4 class="card-title"><?php echo $row->title ?></h4>
-            <p><?php echo $row->descr ?></p>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group me-2" role="group" aria-label="Second group">
-                <button type="submit" name="move" value="l" class="btn btn-secondary"><i class="bi bi-caret-left-fill"></i></button>
-                <button type="submit" name="move" value="r" class="btn btn-secondary"><i class="bi bi-caret-right-fill"></i></button>
-              </div>
-              <div class="btn-group" role="group" aria-label="Third group">
-                <button type="submit" name="del" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-              </div>
-              <input type="hidden" name="status" value="<?php echo $row->status ?>">
-              <input type="hidden" name="id" value="<?php echo $row->id ?>">
+      <h3 class="mb-3">In Progress</h3>
+      <ul id="1" class="cards">
+        <?php foreach ($resI as $row) { ?>
+          <li>
+            <div class="card mb-2" id="<?php echo $row->id ?>">
+              <form method="post" class="card-body">
+                <h4 class="card-title"><?php echo $row->title ?></h4>
+                <p><?php echo $row->descr ?></p>
+                <button type="submit" name="del" class="btn btn-danger" id="delete-task"><i class="bi bi-x-lg"></i></button>
+                <input type="hidden" name="status" value="<?php echo $row->status ?>">
+                <input type="hidden" name="id" value="<?php echo $row->id ?>">
+              </form>
             </div>
-          </div>
-        </form>
-      <?php } ?>
+          </li>
+        <?php } ?>
+      </ul>
     </div>
     <div class="col">
-      <h1 class="text-center fs-4">Completed</h1>
-      <?php foreach ($resC as $row) { ?>
-        <form method="post" class="card mb-2">
-          <div class="card-body">
-            <h4 class="card-title"><?php echo $row->title ?></h4>
-            <p><?php echo $row->descr ?></p>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group me-2" role="group" aria-label="Second group">
-                <button type="submit" name="move" value="l" class="btn btn-secondary"><i class="bi bi-caret-left-fill"></i></button>
-                <button type="submit" name="move" value="r" class="btn btn-secondary" disabled><i class="bi bi-caret-right-fill"></i></button>
-              </div>
-              <div class="btn-group" role="group" aria-label="Third group">
-                <button type="submit" name="del" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-              </div>
-              <input type="hidden" name="status" value="<?php echo $row->status ?>">
-              <input type="hidden" name="id" value="<?php echo $row->id ?>">
+      <h3 class="mb-3">Completed</h3>
+      <ul id="2" class="cards">
+        <?php foreach ($resC as $row) { ?>
+          <li>
+            <div class="card mb-2" id="<?php echo $row->id ?>">
+              <form method="post" class="card-body">
+                <h4 class="card-title"><?php echo $row->title ?></h4>
+                <p><?php echo $row->descr ?></p>
+                <button type="submit" name="del" class="btn btn-danger" id="delete-task"><i class="bi bi-x-lg"></i></button>
+                <input type="hidden" name="status" value="<?php echo $row->status ?>">
+                <input type="hidden" name="id" value="<?php echo $row->id ?>">
+              </form>
             </div>
-          </div>
-        </form>
-      <?php } ?>
+          </li>
+        <?php } ?>
+      </ul>
     </div>
   </div>
-
 </div>

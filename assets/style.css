@@ -1,1 +1,19 @@
-/* non più utilizzato */
+ul.cards {
+    list-style-type: none !important;
+    min-height: 400px;
+    padding: 0;
+}
+
+.card {
+    cursor: grab;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+#delete-task {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
