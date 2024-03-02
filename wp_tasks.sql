@@ -15,13 +15,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dump della struttura di tabella wordpress.wp_tasks
-CREATE TABLE IF NOT EXISTS `wp_tasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL,
-  `descr` varchar(200) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `i` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS 'wp_tasks' (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'title' varchar(50) NOT NULL,
+  'descr' varchar(200) DEFAULT NULL,
+  'status' int(11) DEFAULT NULL,
+  'i' int(11) DEFAULT NULL,
+  PRIMARY KEY ('id')
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- L’esportazione dei dati non era selezionata.
