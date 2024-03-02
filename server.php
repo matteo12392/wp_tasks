@@ -11,7 +11,8 @@ if (isset($_POST['save_task'])) {
 if (isset($_POST['move'])) {
   $id = $_POST['id'];
   $newStatus = $_POST['status'];
-  $wpdb->update($tasks, array("status" => $newStatus), array("id" => $id));
+  $newIndex = $_POST['index'];
+  $wpdb->update($tasks, array("status" => $newStatus, "i" => $newIndex), array("id" => $id));
 }
 
 if (isset($_POST['del'])) {

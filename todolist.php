@@ -1,10 +1,10 @@
 <?php
 include("server.php");
-$sqlT = "SELECT * FROM $tasks WHERE status = 0";
+$sqlT = "SELECT * FROM $tasks WHERE status = 0 ORDER BY i ASC";
 $resT = $wpdb->get_results($sqlT);
-$sqlI = "SELECT * FROM $tasks WHERE status = 1";
+$sqlI = "SELECT * FROM $tasks WHERE status = 1 ORDER BY i ASC";
 $resI = $wpdb->get_results($sqlI);
-$sqlC = "SELECT * FROM $tasks WHERE status = 2";
+$sqlC = "SELECT * FROM $tasks WHERE status = 2 ORDER BY i ASC";
 $resC = $wpdb->get_results($sqlC);
 ?>
 <div class="container my-5">
@@ -29,7 +29,7 @@ $resC = $wpdb->get_results($sqlC);
               <option value="1">In Progress</option>
               <option value="2">Completed</option>
             </select>
-            <button type="submit" name="save_task" class="btn btn-primary"><b>Save Task</b></button>
+            <button onclick="createTask()" class="btn btn-primary"><b>Save Task</b></button>
           </div>
         </div>
       </div>
