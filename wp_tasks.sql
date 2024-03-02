@@ -20,15 +20,11 @@ CREATE TABLE IF NOT EXISTS `wp_tasks` (
   `title` varchar(50) NOT NULL,
   `descr` varchar(200) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `i` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dump dei dati della tabella wordpress.wp_tasks: ~6 rows (circa)
-INSERT INTO `wp_tasks` (`id`, `title`, `descr`, `status`) VALUES
-	(1, 'aa', 'sss', 2),
-	(2, 'To Do', 'sssi', 1),
-	(3, 'ada', 'aaaa', 0),
-	(10, 'sasa', 'sese', 1);
+-- L’esportazione dei dati non era selezionata.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
