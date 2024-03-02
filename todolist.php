@@ -6,6 +6,9 @@ $sqlI = "SELECT * FROM $tasks WHERE status = 1 ORDER BY i ASC";
 $resI = $wpdb->get_results($sqlI);
 $sqlC = "SELECT * FROM $tasks WHERE status = 2 ORDER BY i ASC";
 $resC = $wpdb->get_results($sqlC);
+$sqlId = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '$tasks';";
+$resId = $wpdb->get_results($sqlId);
+$id = $resId[0]->AUTO_INCREMENT;
 ?>
 <div class="container my-5">
   <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -18,7 +21,8 @@ $resC = $wpdb->get_results($sqlC);
       <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
         <div class="accordion-body d-grid">
           <div class="input-group mb-2">
-            <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" id="title" name="title" maxlength="50" required>
+            <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" id="title" name="title" maxlength="50">
+            <input type="text" value="<?php echo $id?>" hidden id="newId">
           </div>
           <div class="input-group input-group-sm mb-2">
             <textarea class="form-control" aria-label="Description" name="descr" maxlength="200" id="descr"></textarea>
@@ -28,7 +32,7 @@ $resC = $wpdb->get_results($sqlC);
             <option value="1">In Progress</option>
             <option value="2">Completed</option>
           </select>
-          <button onclick="createTask()" class="btn btn-primary delete-task"><b>Save Task</b></button>
+          <button onclick="createTask()" class="btn btn-primary" id="submitTask"><b>Save Task</b></button>
         </div>
       </div>
     </div>

@@ -29,28 +29,37 @@ function createTask() {
     const title = $("#title").val();
     const descr = $("#descr").val();
     const status = $("#status").val();
+    const index = $("ul#"+status+" li").length;
     $("#submitTask").prop("disabled", true);
-    $.ajax({
-        type: "POST",
-        data: {
-            save_task: true, title: title, descr: descr, status: status
-        },
-        success: function () {
-            $("#submitTask").prop("disabled", false);
-            console.log("created new task");
-            $("ul#"+status+".cards").append(`<li>
-            <div class="card mb-2" id="`+tasks.length+`" status="status">
-              <form method="post" class="card-body">
-                <h4 class="card-title">`+title+`</h4>
-                <p>`+descr+`</p>
-                <button type="submit" name="del" class="btn btn-danger" id="delete-task"><i class="bi bi-x-lg"></i></button>
-                <input type="hidden" name="status" value="`+status+`">
-                <input type="hidden" name="id" value="`+tasks.length+`">
-              </form>
-            </div>
-          </li>`);
-        }
-    });
+    if(title != "") {
+        $.ajax({
+            type: "POST",
+            data: {
+                save_task: true, title: title, descr: descr, status: status, index: index
+            },
+            success: function () {
+                $("#submitTask").prop("disabled", false);
+                $("#title").val(null);
+                $("#descr").val("");
+                $("#status").val("0");
+                const newId = parseInt($("#newId").val())+1;
+                $("#newId").val(newId.toString());
+                console.log("created new task");
+                tasks.push({id: newId, status: status, index: $("ul#"+status+" li").length});
+                $("ul#"+status+".cards").append(`<li>
+                <div class="card mb-2" id="`+tasks.length+`" status="status">
+                    <h4 class="card-title">`+title+`</h4>
+                    <p>`+descr+`</p>
+                    <button onclick="deleteTask(`+tasks.length+`)"  name="del" class="btn btn-danger delete-task"><i class="bi bi-x-lg"></i></button>
+                </div>
+              </li>`);
+            }
+        });
+    }
+    else {
+        alert("In order to create a new task, you need to choose a title");
+        $("#submitTask").prop("disabled", false);
+    }
 }
 function deleteTask(id) {
     console.log(id);
