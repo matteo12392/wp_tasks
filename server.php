@@ -19,10 +19,3 @@ if (isset($_POST['del'])) {
   $id = $_POST['id'];
   $wpdb->delete($tasks, array("id" => $id));
 }
-
-if (isset($_POST['getId'])) {
-  $sql = "SHOW TABLE STATUS LIKE $tasks";
-  $res = $wpdb->get_results($sql);
-  $id = $res[0]->auto_increment+1;
-  wp_send_json_success(array('auto_increment' => $id));
-}
