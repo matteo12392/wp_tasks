@@ -9,12 +9,9 @@ if (isset($_POST['save_task'])) {
 }
 
 if (isset($_POST['move'])) {
-  $move = $_POST['move'];
   $id = $_POST['id'];
-  $status = $_POST['status'];
-  if($move == "l") $status--;
-  else $status++;
-  $wpdb->update($tasks, array("status" => $status), array("id" => $id));
+  $newStatus = $_POST['status'];
+  $wpdb->update($tasks, array("status" => $newStatus), array("id" => $id));
 }
 
 if (isset($_POST['del'])) {

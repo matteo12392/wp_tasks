@@ -43,7 +43,7 @@ $resC = $wpdb->get_results($sqlC);
       <ul id="0" class="cards">
         <?php foreach ($resT as $row) { ?>
           <li>
-            <div class="card mb-2" id="<?php echo $row->id ?>">
+            <div class="card mb-2" id="<?php echo $row->id ?>" status="<?php echo $row->status ?>">
               <form method="post" class="card-body">
                 <h4 class="card-title"><?php echo $row->title ?></h4>
                 <p><?php echo $row->descr ?></p>
@@ -61,7 +61,7 @@ $resC = $wpdb->get_results($sqlC);
       <ul id="1" class="cards">
         <?php foreach ($resI as $row) { ?>
           <li>
-            <div class="card mb-2" id="<?php echo $row->id ?>">
+            <div class="card mb-2" id="<?php echo $row->id ?>" status="<?php echo $row->status ?>">
               <form method="post" class="card-body">
                 <h4 class="card-title"><?php echo $row->title ?></h4>
                 <p><?php echo $row->descr ?></p>
@@ -79,7 +79,7 @@ $resC = $wpdb->get_results($sqlC);
       <ul id="2" class="cards">
         <?php foreach ($resC as $row) { ?>
           <li>
-            <div class="card mb-2" id="<?php echo $row->id ?>">
+            <div class="card mb-2" id="<?php echo $row->id ?>" status="<?php echo $row->status ?>">
               <form method="post" class="card-body">
                 <h4 class="card-title"><?php echo $row->title ?></h4>
                 <p><?php echo $row->descr ?></p>
