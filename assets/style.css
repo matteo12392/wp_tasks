@@ -1,18 +1,18 @@
-ul.cards {
+ul.lucz-tasks {
     list-style-type: none !important;
     min-height: 400px;
     padding: 0;
 }
 
-.card {
+.lucz-task {
     cursor: grab;
 }
 
-.card:active {
+.lucz-task:active {
     cursor: grabbing;
 }
 
-.delete-task {
+.lucz-delete-task {
     position: absolute;
     right: 5px;
     top: 5px;

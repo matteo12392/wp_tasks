@@ -3,7 +3,7 @@
  * Plugin Name:       ToDo List - LuCz
  * Plugin URI:        https://lucz.altervista.org/
  * Description:       Handle the basics with this plugin.
- * Version:           1.2.5
+ * Version:           1.4.5
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Matteo Lucrezio
@@ -59,6 +59,6 @@ function lucz_settings() {
   );
 }
 function lucz_sideBanner() {
-  include("todolist.php");
+  include("index.php");
 }
 add_action('admin_menu', 'lucz_settings');

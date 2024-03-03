@@ -46,11 +46,11 @@ function createTask() {
                 $("#newId").val(newId.toString());
                 console.log("created new task");
                 tasks.push({id: newId, status: status, index: $("ul#"+status+" li").length});
-                $("ul#"+status+".cards").append(`<li>
-                <div class="card mb-2" id="`+tasks.length+`" status="status">
+                $("ul#"+status+".lucz-tasks").append(`<li>
+                <div class="card mb-2 lucz-task" id="`+tasks.length+`" status="status">
                     <h4 class="card-title">`+title+`</h4>
                     <p>`+descr+`</p>
-                    <button onclick="deleteTask(`+tasks.length+`)"  name="del" class="btn btn-danger delete-task"><i class="bi bi-x-lg"></i></button>
+                    <button onclick="deleteTask(`+tasks.length+`)"  name="del" class="btn btn-danger lucz-delete-task"><i class="bi bi-x-lg"></i></button>
                 </div>
               </li>`);
             }
@@ -63,14 +63,14 @@ function createTask() {
 }
 function deleteTask(id) {
     console.log(id);
-    $(".delete-task").prop("disabled", true);
+    $(".lucz-delete-task").prop("disabled", true);
     $.ajax({
         type: "POST",
         data: {
             del: true, id: id
         },
         success: function () {
-            $(".delete-task").prop("disabled", false);
+            $(".lucz-delete-task").prop("disabled", false);
             console.log("task deleted");
             $("#"+id+".card").parent().remove();
         }
@@ -83,7 +83,6 @@ $(window).on("load", function () {
         t.id = $(this).attr("id");
         t.status = $(this).attr("status");
         t.index = $(this).parent().index();
-        console.log("ciao");
         tasks.push(t);
         oldTasks.push({ id: t.id, status: t.status, index: t.index }); // senza questo sarebbe una copia costante di task
     });
@@ -94,7 +93,6 @@ $(window).on("load", function () {
         update: async function (event, ui) {
             let taskId = ui.item.children().attr("id");
             let columnId = $(this).attr("id");
-            let indexTask = ui.item.index();
             let arrIndexTask = tasks.findIndex(x => x.id == taskId);
             tasks[arrIndexTask].status = columnId;
             await refreshIndex();
