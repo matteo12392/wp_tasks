@@ -47,8 +47,9 @@ function createTask(colId) {
                 const newId = parseInt($(".newId").val()) + 1;
                 $(".newId").val(newId.toString());
                 console.log("created new task");
-                tasks.push({ id: newId, status: status, index: $("ul#" + status + " li").length });
-                $("ul#" + status + ".lucz-tasks").append(printTask(title, descr));
+                tasks.push({ id: newId-1, status: status, index: $("ul#" + status + " li").length });
+                oldTasks.push({ id: newId-1, status: status, index: $("ul#" + status + " li").length });
+                $("ul#" + status + ".lucz-tasks").append(printTask(title, descr, newId-1));
             }
         });
     }
@@ -72,12 +73,12 @@ function deleteTask(id) {
         }
     });
 }
-function printTask(title, descr) {
+function printTask(title, descr, id) {
     return `<li>
-    <div class="card mb-2 lucz-task" id="`+ tasks.length + `" status="status">
+    <div class="card mb-2 lucz-task" id="`+ id + `" status="status">
         <h4 class="card-title">`+ title + `</h4>
         <p>`+ descr + `</p>
-        <button onclick="deleteTask(`+ tasks.length + `)"  name="del" class="btn btn-danger lucz-delete-task"><i class="bi bi-x-lg"></i></button>
+        <button onclick="deleteTask(`+ id + `)"  name="del" class="btn btn-danger lucz-delete-task"><i class="bi bi-x-lg"></i></button>
     </div>
   </li>`;
 }
@@ -169,6 +170,8 @@ $(window).on("load", function () {
         update: async function (event, ui) {
             let taskId = ui.item.children().attr("id");
             let columnId = $(this).attr("id");
+            console.log(ui.item.children().attr("id"));
+            console.log($(this));
             let arrIndexTask = tasks.findIndex(x => x.id == taskId);
             tasks[arrIndexTask].status = columnId;
             await refreshIndex();
